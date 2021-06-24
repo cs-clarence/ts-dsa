@@ -64,19 +64,18 @@ export class DoublyLinkedList<Value> {
   }
 
   get length() {
-    // return this._size;
-    let i = 0;
-    let currentNode = this._head;
-    while (currentNode) {
-      ++i;
-      currentNode = currentNode.next;
-    }
-    return i;
+    return this._size;
+    // let i = 0;
+    // let currentNode = this._head;
+    // while (currentNode) {
+    //   ++i;
+    //   currentNode = currentNode.next;
+    // }
+    // return i;
   }
 
   clear() {
-    this._head = undefined;
-    this._tail = undefined;
+    this._head = this._tail = undefined;
     this._size = 0;
   }
 
@@ -101,13 +100,13 @@ export class DoublyLinkedList<Value> {
     // [0, 1, 3]
     //     ^  ^ problem domain
 
-    const currenteNode = this.nodeAt(index);
+    const currentNode = this.nodeAt(index);
 
-    if (!currenteNode) return false;
+    if (!currentNode) return false;
 
     const newNode = new DoublyLinkedNode<Value>(v);
 
-    if (currenteNode.prev) currenteNode.prev.next = newNode;
+    if (currentNode.prev) currentNode.prev.next = newNode;
     ++this._size;
     return true;
   }
@@ -132,7 +131,7 @@ export class DoublyLinkedList<Value> {
     //* Special Case: both tail and head points to the same thing
     //* ...which means that it's either empty or there's only one element in the list
     if (this._tail === this._head) {
-      this._head = this._tail = undefined;
+      this.clear();
       return currentTail?.value;
     } else if (currentTail) {
       this._tail = currentTail.prev;
@@ -148,7 +147,7 @@ export class DoublyLinkedList<Value> {
     //* Special Case: both tail and head points to the same thing
     //* ...which means that it's either empty or there's only one element in the list
     if (this._tail === this._head) {
-      this._head = this._tail = undefined;
+      this.clear();
       return currentHead?.value;
     } else if (currentHead) {
       this._head = currentHead.next;

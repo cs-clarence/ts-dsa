@@ -66,7 +66,7 @@ test("Testing insertAt() and length", () => {
   // 0 = 0
   expect(list.at(0)).toBe(0);
   expect(list.length).toBe(1);
-  console.log(...list);
+  // console.log(...list);
 
   list.insertAt(1, 4);
   // (0 = 0), (1 = 4);
@@ -94,13 +94,13 @@ test("Testing insertAt() and length", () => {
 
   let i = 0;
   for (const item of list) {
-    expect(list.at(i)).toBe(i);
+    expect(item).toBe(i);
     ++i;
   }
 
   i = 4;
   for (const item of list.reverseIterator()) {
-    expect(list.at(i)).toBe(i);
+    expect(item).toBe(i);
     --i;
   }
 });

@@ -47,3 +47,12 @@ test("Doing Complex Series of Tests That Involves Iterating Through the list of 
     h = h?.next;
   }
 });
+
+test("Testing unlinkNext() of a Node", () => {
+  const n = new SinglyLinkedNode<number>(0);
+  const next = new SinglyLinkedNode<number>(1);
+  n.next = next;
+  expect(n.next?.value).toBe(1);
+  n.unlinkNext();
+  expect(n.next).toBeUndefined();
+});
