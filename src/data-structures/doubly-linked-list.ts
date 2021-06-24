@@ -50,6 +50,19 @@ export class DoublyLinkedList<Value> {
     }
   }
 
+  reverseIterator() {
+    const self = this;
+    return {
+      *[Symbol.iterator]() {
+        let currentNode = self._tail;
+        while (currentNode) {
+          yield currentNode.value;
+          currentNode = currentNode.prev;
+        }
+      },
+    };
+  }
+
   get length() {
     // return this._size;
     let i = 0;
@@ -72,6 +85,9 @@ export class DoublyLinkedList<Value> {
   }
 
   nodeAt(index: number) {
+    // check if index is inside boundaries
+    if (index < 0 || index > this.length - 1) return undefined;
+
     let currentNode = this._head;
     for (let i = 1; i <= index; ++i, currentNode = currentNode?.next);
     return currentNode;
@@ -80,7 +96,10 @@ export class DoublyLinkedList<Value> {
   insertAt(index: number, v: Value) {
     // check if the user is just trying to prepend or append
     if (index === 0) return this.prepend(v);
-    if (index === this.length - 1) return this.append(v);
+    if (index === this.length) return this.append(v);
+
+    // [0, 1, 3]
+    //     ^  ^ problem domain
 
     const currenteNode = this.nodeAt(index);
 
@@ -89,7 +108,6 @@ export class DoublyLinkedList<Value> {
     const newNode = new DoublyLinkedNode<Value>(v);
 
     if (currenteNode.prev) currenteNode.prev.next = newNode;
-    currenteNode.prev = newNode;
     ++this._size;
     return true;
   }
