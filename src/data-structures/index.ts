@@ -1,4 +1,3 @@
-export * from "./hash-map";
-export * from "./hash-set";
-export * from "./doubly-linked-list";
-export * from "./singly-linked-list";
+export * from "./hash-table";
+export * from "./linked-list";
+export * from "./bst";

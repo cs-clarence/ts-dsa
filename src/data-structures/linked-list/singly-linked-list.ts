@@ -55,14 +55,14 @@ export class SinglyLinkedList<Value> {
   }
 
   get length() {
-    // return this._size;
-    let i = 0;
-    let currentNode = this._head;
-    while (currentNode) {
-      ++i;
-      currentNode = currentNode.next;
-    }
-    return i;
+    return this._size;
+    // let i = 0;
+    // let currentNode = this._head;
+    // while (currentNode) {
+    //   ++i;
+    //   currentNode = currentNode.next;
+    // }
+    // return i;
   }
 
   // O(1)
