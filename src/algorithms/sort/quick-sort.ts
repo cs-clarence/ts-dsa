@@ -1,21 +1,27 @@
-import { defaultComparer } from "../helpers/default-comparer";
+import { defaultComparer } from "../helpers";
 
 export function quickSort<T>(arr: T[], cmp = defaultComparer): T[] {
   // For some reason, arr.length <= 1 causes this function to overflow
   // ...but arr.length <= 2 works, but it isn't supposed to
-  if (arr.length <= 2) return arr;
+  if (arr.length <= 1) return [...arr];
 
-  const lesserEq: T[] = [];
-  const greater: T[] = [];
-  const pivot = arr[Math.floor(Math.random() * arr.length)];
+  let lesserEq: T[] = [];
+  let greater: T[] = [];
 
-  for (const item of arr) {
-    if (cmp(item, pivot) <= 0) {
-      lesserEq.push(item);
+  const len = arr.length;
+  const pivotIndex = Math.floor(Math.random() * len);
+
+  for (let i = 0; i < len; ++i) {
+    if (i === pivotIndex) continue;
+    if (cmp(arr[i], arr[pivotIndex]) <= 0) {
+      lesserEq.push(arr[i]);
     } else {
-      greater.push(item);
+      greater.push(arr[i]);
     }
   }
 
-  return quickSort(lesserEq, cmp).concat(quickSort(greater, cmp));
+  lesserEq = quickSort(lesserEq, cmp);
+  greater = quickSort(greater, cmp);
+
+  return [...lesserEq, arr[pivotIndex], ...greater];
 }

@@ -1,5 +1,5 @@
-import { defaultComparer } from "../helpers/default-comparer";
-import { swap } from "../helpers/swap";
+import { defaultComparer } from "../helpers";
+import { swap } from "../helpers";
 
 export function bubbleSort<T>(arr: T[], cmp = defaultComparer) {
   const copied = [...arr];

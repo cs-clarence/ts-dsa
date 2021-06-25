@@ -1,4 +1,4 @@
-import { defaultComparer } from "../helpers/default-comparer";
+import { defaultComparer } from "../helpers";
 
 export function selectionSort<T>(arr: T[], cmp = defaultComparer) {
   const copied = [...arr];

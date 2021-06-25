@@ -1,4 +1,4 @@
-import { defaultComparer } from "../helpers/default-comparer";
+import { defaultComparer } from "../helpers";
 import { swap } from "../helpers/swap";
 
 export function shellSort<T>(arr: T[], cmp = defaultComparer) {
