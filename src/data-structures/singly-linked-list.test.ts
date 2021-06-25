@@ -21,7 +21,7 @@ test("Testing prepend(), popFront() and length", () => {
   for (let i = 4, j = 0; i >= 0; --i, ++j) expect(list.at(j)).toBe(i);
   expect(list.length).toBe(5);
 
-  console.log(...list);
+  // console.log(...list);
   for (let i = 4; i >= 0; --i) expect(list.popFront()).toBe(i);
   expect(list.length).toBe(0);
 });

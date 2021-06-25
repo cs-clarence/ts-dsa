@@ -38,7 +38,7 @@ export class SinglyLinkedList<Value> {
     } else {
       newNode.next = this._head;
       this._head = newNode;
-      console.log(...this);
+      // console.log(...this);
     }
 
     ++this._size;
