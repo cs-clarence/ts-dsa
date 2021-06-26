@@ -6,9 +6,14 @@ export class HashMap<Key, Value> {
   // * it must reserve more space and rehash all it's elements to prevent slowdown
 
   private _buckets: ([Key, Value][] | undefined)[];
+  private maxLoadFactor: number = 1;
 
-  constructor(nBuckets: number = 0, private maxLoadFactor: number = 1) {
-    this._buckets = new Array(nBuckets);
+  constructor(...initList: [Key, Value][]) {
+    this._buckets = new Array(initList.length);
+
+    for (const [key, value] of initList) {
+      this.set(key, value);
+    }
   }
 
   set(key: Key, value: Value) {

@@ -1,31 +1,13 @@
 import { BSTSet } from "./bst-set";
 
-let set = new BSTSet<number>();
+test("Testing BSTSet.constructor(), BSTSet.length, and BSTSet.contains()", () => {
+  const set = new BSTSet<number>(0, 1, 2, 3, 4);
+  expect(set.length).toBe(5);
 
-test("Inserting 5 Unique Elements into the Set", () => {
-  for (let i = 0; i < 5; ++i) set.insert(i);
+  for (let i = 0; i < set.length; ++i) expect(set.contains(i)).toBe(true);
 });
 
-test("Checking the Prescence of the 5 Unique Elements Inserted", () => {
-  for (let i = 0; i < 5; ++i) expect(set.contains(i)).toBe(true);
-});
-
-test("Clearing the Set", () => {
-  set.clear();
-});
-
-test("Checking the Length of the Set After Clearing", () => {
-  expect(set.length).toBe(0);
-});
-
-test("Inserting the Same Element 5 Times into the Set", () => {
-  for (let i = 0; i < 5; ++i) set.insert(1);
-});
-
-test("Checking for the Duplication after Inserting the Same Element 5 Times", () => {
-  expect(set.length).toBe(1);
-});
-
-test("Checking the Set If It Contains An Element That Wasn't Inserted Before", () => {
-  expect(set.contains(100)).toBe(false);
+test("Testing BSTSet.contains() with non-existed value", () => {
+  const set = new BSTSet<number>(0, 1, 2, 3, 4);
+  expect(set.contains(5)).toBe(false);
 });

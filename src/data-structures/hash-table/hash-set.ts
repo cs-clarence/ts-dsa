@@ -6,9 +6,13 @@ export class HashSet<Value> {
   // * it must reserve more space and rehash all it's elements to prevent slowdown
 
   private _buckets: (Value[] | undefined)[];
+  private _maxLoadFactor: number = 1;
 
-  constructor(nBuckets: number = 0, private maxLoadFactor: number = 1) {
-    this._buckets = new Array(nBuckets);
+  constructor(...initList: Value[]) {
+    this._buckets = new Array(initList.length);
+    for (const value of initList) {
+      this.insert(value);
+    }
   }
 
   get length() {
@@ -39,7 +43,7 @@ export class HashSet<Value> {
       if (this.contains(v)) return;
 
       const bucketsLength = this._buckets.length;
-      if (bucket.length >= bucketsLength * this.maxLoadFactor) {
+      if (bucket.length >= bucketsLength * this._maxLoadFactor) {
         this.reserve(bucketsLength <= 0 ? 1 : bucketsLength * 2);
         hash = this._hash(v);
         bucket = this._buckets[hash];
