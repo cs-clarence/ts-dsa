@@ -8,12 +8,12 @@ export class SinglyLinkedList<Value> {
 
   constructor(...values: Value[]) {
     for (const value of values) {
-      this.append(value);
+      this.pushBack(value);
     }
   }
 
-  // O(n)
-  append(v: Value) {
+  // O(1)
+  pushBack(v: Value) {
     const newNode = new SinglyLinkedNode<Value>(v);
 
     // * Special Case: both head and tail points to nothing/undefined
@@ -28,8 +28,8 @@ export class SinglyLinkedList<Value> {
     return true;
   }
 
-  // O(n)
-  prepend(v: Value) {
+  // O(1)
+  pushFront(v: Value) {
     const newNode = new SinglyLinkedNode<Value>(v);
 
     // * Special Case: both head and tail points to nothing/undefined
@@ -89,8 +89,8 @@ export class SinglyLinkedList<Value> {
   // O(n)
   insertAt(index: number, v: Value) {
     // check if the user is just trying to prepend or append
-    if (index === 0) return this.prepend(v);
-    if (index === this.length) return this.append(v);
+    if (index === 0) return this.pushFront(v);
+    if (index === this.length) return this.pushBack(v);
 
     const prevNode = this.nodeAt(index - 1);
 

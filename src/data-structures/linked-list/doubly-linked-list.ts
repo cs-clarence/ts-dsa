@@ -8,11 +8,11 @@ export class DoublyLinkedList<Value> {
 
   constructor(...values: Value[]) {
     for (const value of values) {
-      this.append(value);
+      this.pushBack(value);
     }
   }
 
-  append(v: Value) {
+  pushBack(v: Value) {
     const newNode = new DoublyLinkedNode<Value>(v);
 
     // Special Case: both head and tail points to nothing/undefined
@@ -27,7 +27,7 @@ export class DoublyLinkedList<Value> {
     return true;
   }
 
-  prepend(v: Value) {
+  pushFront(v: Value) {
     const newNode = new DoublyLinkedNode<Value>(v);
 
     // Special Case: both head and tail points to nothing/undefined
@@ -94,8 +94,8 @@ export class DoublyLinkedList<Value> {
 
   insertAt(index: number, v: Value) {
     // check if the user is just trying to prepend or append
-    if (index === 0) return this.prepend(v);
-    if (index === this.length) return this.append(v);
+    if (index === 0) return this.pushFront(v);
+    if (index === this.length) return this.pushBack(v);
 
     // [0, 1, 3]
     //     ^  ^ problem domain

@@ -8,16 +8,16 @@ test("Testing nodeAt() and at()", () => {
   expect(list.at(-1)).toBeUndefined();
 });
 
-test("Testing append() and legth", () => {
+test("Testing pushBack() and length", () => {
   const list = new SinglyLinkedList<number>();
-  for (let i = 0; i < 5; ++i) list.append(i);
+  for (let i = 0; i < 5; ++i) list.pushBack(i);
   for (let i = 4; i >= 0; --i) expect(list.at(i)).toBe(i);
   expect(list.length).toBe(5);
 });
 
-test("Testing prepend(), popFront() and length", () => {
+test("Testing pushFront(), popFront() and length", () => {
   const list = new SinglyLinkedList<number>();
-  for (let i = 0; i < 5; ++i) list.prepend(i);
+  for (let i = 0; i < 5; ++i) list.pushFront(i);
   for (let i = 4, j = 0; i >= 0; --i, ++j) expect(list.at(j)).toBe(i);
   expect(list.length).toBe(5);
 

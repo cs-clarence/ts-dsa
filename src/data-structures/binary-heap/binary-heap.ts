@@ -7,11 +7,11 @@ export class BinaryHeap<Value> {
   constructor(protected _cmp = defaultComparer) {}
 
   protected _getLeftNodeIndex(nodeIndex: number) {
-    return (nodeIndex + 1) / 2 - 1;
+    return 2 * (nodeIndex + 1) - 1;
   }
 
   protected _getRightNodeIndex(nodeIndex: number) {
-    return (nodeIndex + 1) / 2;
+    return 2 * (nodeIndex + 1);
   }
 
   push(value: Value) {}
